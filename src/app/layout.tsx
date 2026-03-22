@@ -6,8 +6,8 @@ import { AuthProvider } from "@/context/AuthContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "NoteSaver | Secure & Beautiful Notes",
-  description: "Advanced note-taking with glassmorphism UI and secure cloud storage.",
+  title: "HireMind AI | Smart Job Searching",
+  description: "AI-driven job matching platform to help you find your dream role based on your skills.",
 };
 
 export default function RootLayout({

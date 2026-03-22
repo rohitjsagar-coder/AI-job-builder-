@@ -27,8 +27,8 @@ export default function SignupPage() {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <h1 className={styles.title}>Create Account</h1>
-        <p className={styles.subtitle}>Start taking notes beautifully</p>
+        <h1 className={styles.title}>Join HireMind AI</h1>
+        <p className={styles.subtitle}>Start your AI-powered job search today</p>
 
         {error && <div className={styles.error}>{error}</div>}
 

@@ -27,8 +27,8 @@ export default function LoginPage() {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <h1 className={styles.title}>Welcome Back</h1>
-        <p className={styles.subtitle}>Sign in to access your notes</p>
+        <h1 className={styles.title}>HireMind AI</h1>
+        <p className={styles.subtitle}>Sign in to your AI career partner</p>
 
         {error && <div className={styles.error}>{error}</div>}
 
