@@ -3,12 +3,14 @@ export interface Job {
   title: string;
   company: string;
   location: string;
-  salary: string;
+  salary_range: string;
   type: string;
   tags: string[];
   description: string;
   matchScore?: number;
+  created_at?: string;
 }
+
 
 export const MOCK_JOBS: Job[] = [
   {
@@ -16,7 +18,7 @@ export const MOCK_JOBS: Job[] = [
     title: "Senior Frontend Engineer",
     company: "TechFlow AI",
     location: "Remote",
-    salary: "$140k - $180k",
+    salary_range: "$140k - $180k",
     type: "Full-time",
     tags: ["React", "TypeScript", "Tailwind"],
     description: "Build next-gen AI interfaces with cutting-edge technologies."
@@ -26,7 +28,7 @@ export const MOCK_JOBS: Job[] = [
     title: "Product Designer",
     company: "DesignScale",
     location: "San Francisco, CA",
-    salary: "$130k - $160k",
+    salary_range: "$130k - $160k",
     type: "Full-time",
     tags: ["Figma", "UI/UX", "Prototyping"],
     description: "Design seamless experiences for millions of users."
@@ -36,7 +38,7 @@ export const MOCK_JOBS: Job[] = [
     title: "Backend Developer",
     company: "DataSync",
     location: "Austin, TX",
-    salary: "$120k - $150k",
+    salary_range: "$120k - $150k",
     type: "Hybrid",
     tags: ["Node.js", "PostgreSQL", "AWS"],
     description: "Scaling high-performance APIs for data-intensive applications."
@@ -46,7 +48,7 @@ export const MOCK_JOBS: Job[] = [
     title: "Full Stack Engineer",
     company: "JobSphere",
     location: "Remote",
-    salary: "$110k - $140k",
+    salary_range: "$110k - $140k",
     type: "Contract",
     tags: ["Next.js", "Firebase", "Stripe"],
     description: "Full stack ownership of our job matching engine."
@@ -56,7 +58,7 @@ export const MOCK_JOBS: Job[] = [
     title: "AI Research Scientist",
     company: "NeuralNet",
     location: "Remote",
-    salary: "$160k - $220k",
+    salary_range: "$160k - $220k",
     type: "Full-time",
     tags: ["Python", "PyTorch", "ML"],
     description: "Shape the future of generative models and LLMs."

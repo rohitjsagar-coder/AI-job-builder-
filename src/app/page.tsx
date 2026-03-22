@@ -6,34 +6,46 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import Footer from "@/components/Footer";
+import { motion } from "framer-motion";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#0a0a0c]">
+    <main className="min-h-screen bg-[#09090b]">
       <Navbar />
       <Hero />
       <Features />
-      <div className="container mx-auto px-6 py-20 text-center">
-        <div className="max-w-4xl mx-auto p-12 rounded-[2rem] bg-gradient-to-br from-indigo-600 to-purple-700 relative overflow-hidden group">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-20 -mt-20 group-hover:scale-125 transition-transform duration-700" />
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight relative z-10">
-            Ready to find your next challenge?
+      
+      {/* Premium CTA Section */}
+      <div className="container mx-auto px-12 py-40 text-center">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="max-w-5xl mx-auto p-20 rounded-[4rem] bg-gradient-to-br from-indigo-600 via-indigo-700 to-purple-800 relative overflow-hidden shadow-[0_40px_100px_rgba(79,70,229,0.3)] group"
+        >
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-[100px] -mr-32 -mt-32 group-hover:scale-150 transition-transform duration-1000" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-400/20 rounded-full blur-[80px] -ml-20 -mb-20" />
+          
+          <h2 className="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter relative z-10 leading-tight">
+            Ready to find your <br /> next challenge?
           </h2>
-          <p className="text-indigo-100 text-lg mb-10 relative z-10 max-w-2xl mx-auto">
-            Join thousands of professionals who have found their dream roles using our AI matching technology.
+          <p className="text-white/70 text-xl md:text-2xl mb-14 relative z-10 max-w-3xl mx-auto font-medium">
+            Join the world's most innovative professionals and find your dream role using our precision AI matching engine.
           </p>
           <div className="flex justify-center relative z-10">
             <Link 
               href="/signup" 
-              className="px-10 py-5 bg-white text-indigo-600 font-bold rounded-2xl hover:bg-slate-100 transition-all hover:scale-105 active:scale-95 shadow-xl inline-block"
+              className="px-14 py-6 bg-white text-indigo-800 font-black rounded-3xl hover:bg-slate-50 transition-all hover:scale-105 active:scale-95 shadow-2xl inline-block text-lg uppercase tracking-widest"
             >
-              Create Free Account
+              Get Started for Free
             </Link>
           </div>
-        </div>
+        </motion.div>
       </div>
+      
       <Footer />
     </main>
   );
 }
+

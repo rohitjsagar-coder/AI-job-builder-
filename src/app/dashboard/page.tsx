@@ -1,132 +1,169 @@
 "use client";
 
-export const dynamic = "force-dynamic";
-
-import { useState } from "react";
+import { useAuth } from "@/context/AuthContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import JobCard from "@/components/JobCard";
-import { useAuth } from "@/context/AuthContext";
-import { MOCK_JOBS } from "@/lib/jobs";
+import { motion } from "framer-motion";
 import { 
   User, 
+  Mail, 
+  Briefcase, 
+  GraduationCap, 
   Settings, 
-  Bookmark, 
-  Zap, 
-  ChevronRight,
-  TrendingUp,
-  Mail,
-  Bell
+  Plus, 
+  ExternalLink,
+  MapPin,
+  Pencil
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { useState } from "react";
 
-export default function DashboardPage() {
+export default function ProfilePage() {
   const { user } = useAuth();
-  
-  // Mocking some matched jobs for the user
-  const matchedJobs = MOCK_JOBS.slice(0, 3);
+  const [activeTab, setActiveTab] = useState("about");
 
   return (
-    <main className="min-h-screen bg-[#0a0a0c]">
+    <main className="min-h-screen bg-[#09090b]">
       <Navbar />
       
-      <div className="pt-32 pb-20 container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+      <div className="pt-32 pb-20 container mx-auto px-8 max-w-6xl">
+        {/* Profile Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white/5 border border-white/10 rounded-[3rem] p-12 mb-12 relative overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-600/10 blur-[80px] rounded-full -mr-20 -mt-20" />
           
-          {/* Profile Sidebar */}
-          <div className="lg:col-span-1 space-y-8">
-            <div className="p-8 rounded-[2rem] bg-white/5 border border-white/10 text-center relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-24 bg-indigo-600/20" />
-              <div className="relative mt-8">
-                <div className="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-[#0a0a0c]">
-                  <User className="w-12 h-12 text-indigo-400" />
-                </div>
-                <h2 className="text-2xl font-bold text-white">{user?.user_metadata?.full_name || "Developer"}</h2>
-                <p className="text-slate-400 text-sm mb-6">{user?.email}</p>
-                <div className="flex justify-center gap-3">
-                  <button className="p-2 bg-white/5 rounded-lg border border-white/10 text-slate-400 hover:text-white transition-colors">
-                    <Settings className="w-5 h-5" />
-                  </button>
-                  <button className="p-2 bg-white/5 rounded-lg border border-white/10 text-slate-400 hover:text-white transition-colors">
-                    <Bell className="w-5 h-5" />
-                  </button>
-                </div>
+          <div className="flex flex-col md:flex-row items-center md:items-end gap-10 relative z-10 text-center md:text-left">
+            <div className="w-40 h-40 bg-indigo-600 rounded-[3rem] flex items-center justify-center border-4 border-[#09090b] shadow-2xl overflow-hidden group relative">
+              <User className="w-20 h-20 text-white" />
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer">
+                <Pencil className="w-6 h-6 text-white" />
+              </div>
+            </div>
+            
+            <div className="flex-1">
+              <h1 className="text-5xl font-black text-white mb-2 tracking-tighter uppercase">
+                {user?.user_metadata?.full_name || "Professional Developer"}
+              </h1>
+              <p className="text-xl font-bold text-indigo-400 mb-6 uppercase tracking-widest">
+                Software Engineer • Cloud Architect
+              </p>
+              <div className="flex flex-wrap justify-center md:justify-start gap-6 text-slate-500 font-bold text-sm uppercase tracking-wider">
+                <span className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4" />
+                  San Francisco, CA
+                </span>
+                <span className="flex items-center gap-2 underline cursor-pointer hover:text-white transition-colors">
+                  <Mail className="w-4 h-4" />
+                  {user?.email}
+                </span>
+                <span className="flex items-center gap-2 underline cursor-pointer hover:text-white transition-colors">
+                  <ExternalLink className="w-4 h-4" />
+                  portfolio.dev
+                </span>
               </div>
             </div>
 
-            <div className="p-8 rounded-[2rem] bg-white/5 border border-white/10">
-              <h3 className="text-sm font-bold text-slate-500 uppercase tracking-widest mb-6 px-1">Statistics</h3>
-              <div className="space-y-4">
-                <div className="flex items-center justify-between p-4 bg-white/5 rounded-2xl border border-white/5">
-                  <div className="flex items-center gap-3">
-                    <Zap className="w-5 h-5 text-indigo-400" />
-                    <span className="text-sm text-slate-300">Job Matches</span>
-                  </div>
-                  <span className="font-bold text-white">42</span>
-                </div>
-                <div className="flex items-center justify-between p-4 bg-white/5 rounded-2xl border border-white/5">
-                  <div className="flex items-center gap-3">
-                    <TrendingUp className="w-5 h-5 text-emerald-400" />
-                    <span className="text-sm text-slate-300">Profile Strength</span>
-                  </div>
-                  <span className="font-bold text-white">85%</span>
-                </div>
-                <div className="flex items-center justify-between p-4 bg-white/5 rounded-2xl border border-white/5">
-                  <div className="flex items-center gap-3">
-                    <Bookmark className="w-5 h-5 text-purple-400" />
-                    <span className="text-sm text-slate-300">Saved Jobs</span>
-                  </div>
-                  <span className="font-bold text-white">12</span>
-                </div>
-              </div>
-            </div>
+            <button className="px-10 py-5 bg-white/5 border border-white/10 rounded-2xl font-black text-white hover:bg-white/10 transition-all flex items-center gap-2 shadow-xl">
+              <Settings className="w-5 h-5" />
+              EDIT PROFILE
+            </button>
           </div>
+        </motion.div>
 
-          {/* Main Content */}
-          <div className="lg:col-span-2 space-y-10">
-            {/* Top Matches Section */}
-            <section>
-              <div className="flex items-center justify-between mb-8">
-                <h2 className="text-3xl font-bold text-white tracking-tight">Top AI Matches</h2>
-                <button 
-                  onClick={() => window.location.href = '/jobs'}
-                  className="text-indigo-400 font-bold text-sm flex items-center gap-1 hover:text-indigo-300"
-                >
-                  View All <ChevronRight className="w-4 h-4" />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* Main Profile Content */}
+          <div className="lg:col-span-2 space-y-12">
+            {/* Experience Section */}
+            <section className="bg-white/2 border border-white/5 rounded-[3rem] p-12">
+              <div className="flex items-center justify-between mb-12">
+                <h2 className="text-3xl font-black text-white tracking-tighter uppercase flex items-center gap-4">
+                  <Briefcase className="w-8 h-8 text-indigo-500" />
+                  Experience
+                </h2>
+                <button className="p-3 bg-white/5 rounded-2xl hover:bg-indigo-600 transition-all text-white border border-white/10 group">
+                  <Plus className="w-6 h-6 group-hover:rotate-90 transition-transform" />
                 </button>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {matchedJobs.map(job => (
-                  <JobCard key={job.id} job={job} />
-                ))}
-              </div>
-            </section>
 
-            {/* Quick Actions / Activity */}
-            <section>
-              <h2 className="text-3xl font-bold text-white tracking-tight mb-8">Recent Activity</h2>
-              <div className="space-y-4">
+              <div className="space-y-12">
                 {[
-                  { icon: <Mail className="w-5 h-5 text-indigo-400" />, title: "Application Viewed", desc: "DesignScale viewed your application for Product Designer.", time: "2 hours ago" },
-                  { icon: <Zap className="w-5 h-5 text-purple-400" />, title: "New Match Found", desc: "A new role from TechFlow AI matches your React skills.", time: "5 hours ago" },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-4 p-6 bg-white/5 border border-white/10 rounded-3xl group hover:bg-white/10 transition-colors">
-                    <div className="p-3 bg-white/5 rounded-2xl">
-                      {item.icon}
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex justify-between items-start mb-1">
-                        <h4 className="font-bold text-white group-hover:text-indigo-400 transition-colors">{item.title}</h4>
-                        <span className="text-xs text-slate-500">{item.time}</span>
-                      </div>
-                      <p className="text-slate-400 text-sm">{item.desc}</p>
-                    </div>
+                  { company: "TechCorp", role: "Senior Developer", period: "2020 - Present" },
+                  { company: "InnoSoft", role: "Full Stack Engineer", period: "2018 - 2020" }
+                ].map((exp, i) => (
+                  <div key={i} className="relative pl-10 border-l-2 border-white/10">
+                    <div className="absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-indigo-500 border-4 border-[#09090b]" />
+                    <h3 className="text-2xl font-black text-white mb-1">{exp.role}</h3>
+                    <p className="text-lg font-bold text-indigo-400 mb-3">{exp.company}</p>
+                    <p className="text-sm font-bold text-slate-500 mb-5 uppercase tracking-widest">{exp.period}</p>
+                    <p className="text-slate-400 font-medium leading-relaxed">
+                      Lead the development of multiple high-scale web applications using React, Next.js, and Node.js. 
+                      Improved site performance by 40% and mentored junior developers.
+                    </p>
                   </div>
                 ))}
               </div>
             </section>
+
+            {/* Education Section */}
+            <section className="bg-white/2 border border-white/5 rounded-[3rem] p-12">
+              <div className="flex items-center justify-between mb-12">
+                <h2 className="text-3xl font-black text-white tracking-tighter uppercase flex items-center gap-4">
+                  <GraduationCap className="w-8 h-8 text-indigo-500" />
+                  Education
+                </h2>
+                <button className="p-3 bg-white/5 rounded-2xl hover:bg-indigo-600 transition-all text-white border border-white/10">
+                  <Plus className="w-6 h-6" />
+                </button>
+              </div>
+              <div className="space-y-10">
+                <div className="flex gap-6">
+                  <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10 shrink-0">
+                    <GraduationCap className="w-8 h-8 text-slate-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-black text-white mb-1">Stanford University</h3>
+                    <p className="text-lg font-bold text-slate-400 mb-2">B.S. in Computer Science</p>
+                    <p className="text-xs font-bold text-slate-600 uppercase tracking-widest">Graduated 2018</p>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
 
+          {/* Sidebar */}
+          <div className="lg:col-span-1 space-y-12">
+            {/* Skills & Expertise */}
+            <section className="bg-white/5 border border-white/10 rounded-[3rem] p-10">
+              <h3 className="text-xl font-black text-white mb-8 uppercase tracking-widest">Expertise</h3>
+              <div className="flex flex-wrap gap-3">
+                {["React", "TypeScript", "Node.js", "AWS", "Next.js", "PostgreSQL", "Tailwind", "Docker"].map((skill) => (
+                  <span 
+                    key={skill} 
+                    className="px-5 py-2.5 bg-white/5 border border-white/10 rounded-2xl text-sm font-bold text-slate-300 hover:text-white hover:border-indigo-500/50 transition-all cursor-default"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+              <button className="w-full mt-10 py-5 bg-white/2 border border-white/5 rounded-2xl text-xs font-black text-slate-500 hover:text-white uppercase tracking-widest transition-all">
+                Manage Skills
+              </button>
+            </section>
+
+            {/* Resume / CV */}
+            <section className="bg-white/5 border border-white/10 rounded-[3rem] p-10">
+              <h3 className="text-xl font-black text-white mb-8 uppercase tracking-widest">Asset Management</h3>
+              <div className="p-6 bg-white/2 border border-dashed border-white/10 rounded-[2rem] text-center group cursor-pointer hover:border-indigo-500/50 transition-all">
+                <div className="w-16 h-16 bg-indigo-600/10 rounded-3xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                   <Plus className="w-8 h-8 text-indigo-400" />
+                </div>
+                <p className="text-sm font-bold text-white mb-2 uppercase tracking-widest">Upload CV</p>
+                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest">PDF, DOCX (Max 5MB)</p>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
 
