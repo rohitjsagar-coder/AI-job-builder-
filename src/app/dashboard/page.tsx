@@ -41,7 +41,7 @@ export default function DashboardPage() {
                 <div className="w-24 h-24 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-[#0a0a0c]">
                   <User className="w-12 h-12 text-indigo-400" />
                 </div>
-                <h2 className="text-2xl font-bold text-white">{user?.displayName || "Developer"}</h2>
+                <h2 className="text-2xl font-bold text-white">{user?.user_metadata?.full_name || "Developer"}</h2>
                 <p className="text-slate-400 text-sm mb-6">{user?.email}</p>
                 <div className="flex justify-center gap-3">
                   <button className="p-2 bg-white/5 rounded-lg border border-white/10 text-slate-400 hover:text-white transition-colors">
