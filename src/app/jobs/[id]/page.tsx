@@ -67,10 +67,19 @@ export default function JobDetailsPage() {
                   <div>
                     <h1 className="text-5xl font-black text-white mb-4 tracking-tighter leading-tight">{job.title}</h1>
                     <div className="flex items-center gap-4 text-xl font-bold text-slate-300">
-                      <span>{job.company}</span>
+                      <a 
+                        href={job.company_url || "#"} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-indigo-400 hover:text-indigo-300 transition-colors flex items-center gap-2 group/company"
+                      >
+                        {job.company}
+                        <ArrowUpRight className="w-5 h-5 opacity-0 group-hover/company:opacity-100 transition-opacity" />
+                      </a>
                       <span className="w-1.5 h-1.5 rounded-full bg-slate-700" />
-                      <span className="text-indigo-400">Verified Partner</span>
+                      <span className="text-indigo-400/60 uppercase tracking-widest text-xs font-black">Verified Partner</span>
                     </div>
+
                   </div>
                 </div>
               </div>
@@ -158,10 +167,18 @@ export default function JobDetailsPage() {
                     <Users className="w-5 h-5" />
                     <span className="text-sm">1,000 - 5,000 Employees</span>
                   </div>
-                  <div className="flex items-center gap-4 text-slate-400">
-                    <Globe className="w-5 h-5" />
-                    <span className="text-sm">www.{job.company.toLowerCase().replace(/\s/g, "")}.com</span>
+                  <div className="flex items-center gap-4 text-slate-400 hover:text-white transition-colors">
+                    <Globe className="w-5 h-5 text-indigo-500" />
+                    <a 
+                      href={job.company_url || "#"} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-sm underline"
+                    >
+                      {job.company_url ? job.company_url.replace("https://", "") : `www.${job.company.toLowerCase().replace(/\s/g, "")}.com`}
+                    </a>
                   </div>
+
                   <div className="flex items-center gap-4 text-slate-400">
                     <Calendar className="w-5 h-5" />
                     <span className="text-sm">Founded in 2012</span>

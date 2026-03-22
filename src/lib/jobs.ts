@@ -9,7 +9,9 @@ export interface Job {
   description: string;
   matchScore?: number;
   created_at?: string;
+  company_url?: string;
 }
+
 
 
 export const MOCK_JOBS: Job[] = [
@@ -21,8 +23,10 @@ export const MOCK_JOBS: Job[] = [
     salary_range: "$140k - $180k",
     type: "Full-time",
     tags: ["React", "TypeScript", "Tailwind"],
-    description: "Build next-gen AI interfaces with cutting-edge technologies."
+    description: "Build next-gen AI interfaces with cutting-edge technologies.",
+    company_url: "https://techflow.ai"
   },
+
   {
     id: "2",
     title: "Product Designer",

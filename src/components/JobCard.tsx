@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, DollarSign, Briefcase, Sparkles, ArrowUpRight } from "lucide-react";
+import { MapPin, DollarSign, Briefcase, Sparkles, ArrowUpRight, ExternalLink } from "lucide-react";
 import { Job } from "@/lib/jobs";
 import Link from "next/link";
 
@@ -28,7 +28,16 @@ export default function JobCard({ job }: JobCardProps) {
             <h3 className="text-3xl font-black text-white group-hover:text-indigo-400 transition-colors mb-3 tracking-tighter">
               {job.title}
             </h3>
-            <p className="text-xl font-bold text-slate-300 mb-4">{job.company}</p>
+            <a 
+              href={job.company_url || "#"} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-xl font-bold text-indigo-400 hover:text-indigo-300 transition-colors inline-flex items-center gap-2 group/link"
+            >
+              {job.company}
+              <ExternalLink className="w-5 h-5 opacity-0 group-hover/link:opacity-100 transition-opacity" />
+            </a>
+
             <div className="flex flex-wrap items-center gap-6 text-sm text-slate-500 font-bold uppercase tracking-widest">
               <span className="flex items-center gap-2 bg-white/5 px-4 py-1.5 rounded-full border border-white/10">
                 <MapPin className="w-4 h-4" />
